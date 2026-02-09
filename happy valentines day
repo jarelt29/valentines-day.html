@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine 💗</title>
+
+<style>
+body {
+  margin: 0;
+  height: 100vh;
+  background: radial-gradient(circle at top, #ffe4ec, #ffb6c1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* ENVELOPE */
+.envelope {
+  position: relative;
+  width: 380px;
+  height: 260px;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* BACK */
+.envelope-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, #ffb6c1, #ffc1d6);
+  border-radius: 20px;
+  box-shadow: 0 25px 45px rgba(0,0,0,0.25);
+}
+
+/* BOTTOM FLAP */
+.envelope-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(145deg, #ffa6c9, #ff9eb8);
+  clip-path: polygon(0 0, 50% 70%, 100% 0, 100% 100%, 0 100%);
+  border-radius: 0 0 20px 20px;
+}
+
+/* TOP FLAP */
+.envelope-top {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 55%;
+  background: linear-gradient(145deg, #ffd1dc, #ffb6c1);
+  clip-path: polygon(0 100%, 50% 30%, 100% 100%, 100% 0, 0 0);
+  border-radius: 20px 20px 0 0;
+}
+
+/* LETTER */
+.letter {
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  width: calc(100% - 36px);
+  height: calc(100% - 36px);
+  background: linear-gradient(to bottom, #ffffff, #fff5f8);
+  border-radius: 15px;
+  padding: 25px 20px;
+  box-shadow: inset 0 0 15px rgba(255,182,193,0.6);
+  z-index: 2;
+  text-align: center;
+}
+
+/* TEXT */
+h1 {
+  margin: 0;
+  color: #c2185b;
+}
+
+.emoji {
+  font-size: 42px;
+  margin-bottom: 10px;
+}
+
+.message {
+  margin: 15px 0;
+  min-height: 50px;
+  font-size: 18px;
+  color: #6a1b9a;
+}
+
+/* BUTTONS */
+.buttons {
+  position: relative;
+  height: 60px;
+}
+
+button {
+  padding: 10px 25px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#yesBtn {
+  background: linear-gradient(135deg, #ff4081, #ff79a8);
+  color: white;
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+#noBtn {
+  background: #f8bbd0;
+  color: #880e4f;
+  position: absolute;
+}
+
+.thank-you {
+  font-size: 20px;
+  color: #ad1457;
+}
+</style>
+</head>
+
+<body>
+
+<div class="envelope">
+  <div class="envelope-back"></div>
+  <div class="envelope-top"></div>
+
+  <div class="letter">
+    <div class="emoji">💌</div>
+    <h1>Can you be my Valentine?</h1>
+
+    <div class="message" id="message">
+      I hope you say yes 💗
+    </div>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="noBtn">No 🙈</button>
+    </div>
+  </div>
+
+  <div class="envelope-bottom"></div>
+</div>
+
+<script>
+let noClickCount = 0;
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+const message = document.getElementById("message");
+
+yesBtn.addEventListener("click", () => {
+  message.innerHTML = "<div class='thank-you'>Thank you 💖<br>You just made my day happy 😊</div>";
+  noBtn.style.display = "none";
+  yesBtn.style.display = "none";
+});
+
+noBtn.addEventListener("click", () => {
+  noClickCount++;
+  if (noClickCount === 1) {
+    message.textContent = "Please think it properly 🥺💗";
+  } else {
+    const x = Math.random() * 200;
+    const y = Math.random() * 40;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+});
+</script>
+
+</body>
+</html>
